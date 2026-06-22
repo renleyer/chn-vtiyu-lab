@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>V体育 · 赛事资料索引 | 信息整理平台</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      background: #f5f7fa;
+      color: #1e293b;
+      line-height: 1.7;
+    }
+
+    /* hero 区 – 深色头图 */
+    .hero {
+      background: linear-gradient(145deg, #0b1a2e 0%, #132c44 100%);
+      color: #e9edf2;
+      padding: 5rem 1.5rem 4.5rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -2rem;
+      left: -2rem;
+      width: 20rem;
+      height: 20rem;
+      border-radius: 50%;
+      background: rgba(56, 178, 172, 0.06);
+      pointer-events: none;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero .sub {
+      font-size: 1.2rem;
+      max-width: 40rem;
+      margin: 0.5rem auto 1.2rem;
+      opacity: 0.85;
+      font-weight: 350;
+    }
+
+    .hero .tagline {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.08);
+      padding: 0.4rem 1.2rem;
+      border-radius: 40px;
+      font-size: 0.9rem;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* 优势区 – 卡片网格 */
+    .section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 3.5rem 1.5rem;
+    }
+
+    .section-title {
+      font-size: 1.9rem;
+      font-weight: 550;
+      margin-bottom: 0.6rem;
+      color: #0f1f33;
+    }
+
+    .section-sub {
+      font-size: 1rem;
+      color: #5f6c80;
+      margin-bottom: 2.5rem;
+      border-left: 4px solid #0f766e;
+      padding-left: 1rem;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 2rem 1.6rem;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+      border: 1px solid #eef2f6;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(13, 43, 67, 0.08);
+      border-color: #cbd5e1;
+    }
+
+    .card em {
+      display: inline-block;
+      font-style: normal;
+      font-weight: 550;
+      font-size: 1.3rem;
+      color: #0f766e;
+      margin-bottom: 0.6rem;
+    }
+
+    .card h3 {
+      font-size: 1.2rem;
+      font-weight: 550;
+      margin-bottom: 0.5rem;
+    }
+
+    .card p {
+      font-size: 0.95rem;
+      color: #3b4a5e;
+    }
+
+    /* 说明区 – 长段落 */
+    .explain-block {
+      background: white;
+      border-radius: 20px;
+      padding: 2.5rem 2.2rem;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.02);
+      border: 1px solid #e2e8f0;
+      margin-bottom: 2.5rem;
+    }
+
+    .explain-block p {
+      margin-bottom: 1.4rem;
+      font-size: 1.02rem;
+    }
+
+    .explain-block a, .faq a, .footnote a {
+      color: #0f766e;
+      text-decoration: none;
+      border-bottom: 1px solid #b0d4d0;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .explain-block a:hover, .faq a:hover, .footnote a:hover {
+      color: #064e3b;
+      border-bottom-color: #064e3b;
+    }
+
+    /* FAQ 摘要 */
+    .faq-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.8rem;
+      margin: 1.8rem 0;
+    }
+
+    .faq-item {
+      background: white;
+      padding: 1.6rem 1.8rem;
+      border-radius: 18px;
+      border: 1px solid #e9edf2;
+    }
+
+    .faq-item h4 {
+      font-size: 1.1rem;
+      font-weight: 550;
+      margin-bottom: 0.4rem;
+      color: #0f1f33;
+    }
+
+    .faq-item p {
+      font-size: 0.95rem;
+      color: #425267;
+    }
+
+    /* 底部链接 */
+    .footnote {
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+      border-top: 1px solid #dce3ec;
+      background: #f5f7fa;
+      font-size: 0.95rem;
+      color: #5f6c80;
+    }
+
+    .footnote a {
+      color: #0f766e;
+      font-weight: 450;
+    }
+
+    /* 响应式细节 */
+    @media (max-width: 900px) {
+      .grid-3 {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+      }
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .grid-3 {
+        grid-template-columns: 1fr;
+      }
+      .faq-grid {
+        grid-template-columns: 1fr;
+      }
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+      .section {
+        padding: 2.5rem 1rem;
+      }
+      .explain-block {
+        padding: 1.8rem 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- hero 区 -->
+  <header class="hero">
+    <h1>V体育 · 赛事资料索引</h1>
+    <p class="sub">从信息整理出发，为体育观察者提供结构化聚合、赛事脉络梳理与索引服务。</p>
+    <span class="tagline">知识型 · 非博彩 ｜ 资料目录式索引</span>
+  </header>
+
+  <!-- 优势区：卡片展示信息结构化逻辑 -->
+  <section class="section">
+    <h2 class="section-title">以索引思维搭建的信息框架</h2>
+    <div class="section-sub">不是信息堆砌，而是经过筛选、归类、标注的资料集合。</div>
+    <div class="grid-3">
+      <div class="card">
+        <em>▸ 赛事分类</em>
+        <h3>多维度标签层</h3>
+        <p>按联赛、赛季、赛区、场地条件等多标签分类，降低查找成本，方便交叉参考。</p>
+      </div>
+      <div class="card">
+        <em>▸ 更新记录</em>
+        <h3>可溯源的版本</h3>
+        <p>每条资料附更新时间与来源标注，方便回溯信息变化路径，提升引用准确度。</p>
+      </div>
+      <div class="card">
+        <em>▸ 关联条目</em>
+        <h3>上下文联结</h3>
+        <p>相关赛事、队伍、历史数据之间建立内部链接，形成网状索引而非孤立条目。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 说明区：从资料整理角度展开 -->
+  <section class="section">
+    <h2 class="section-title">为什么需要资料索引</h2>
+    <div class="explain-block">
+      <p>体育赛事信息具有高时效、多来源、碎片化等特点。无论是赛事回顾、赛季对比还是队伍沿革，往往需要同时在多个页面之间跳转比对，效率较低。<strong>V体育</strong> 尝试从资料整理的角度切入，把散落的信息按照统一结构重新组织，形成一份可供查阅、可被引用的索引目录。</p>
+      <p>这种索引不是简单的链接集合，而是对信息本身进行标注：例如某场经典比赛，不仅记录比分，还会标注比赛阶段、场地类型、关键转折事件等元数据。使用者可以像查阅文献目录一样，先定位层级，再深入细节。</p>
+      <p>同时，索引本身也持续更新和修正。当新的赛事资料出现或原有信息需要修订时，对应的条目会标注版本变更说明。如果你对某个具体赛事或类别有更深入的资料整理需求，可以参考 <a href="https://chn-vtiyu.com">V体育</a> 上的分类条目，那里保留了更完整的索引结构。</p>
+    </div>
+
+    <div style="margin-top: 1.2rem;">
+      <h3 style="font-size:1.3rem;font-weight:550;margin-bottom:0.5rem;">索引覆盖场景举例</h3>
+      <div class="grid-3" style="grid-template-columns: repeat(3, 1fr); gap: 1.2rem;">
+        <div style="background:#eef3f9; border-radius: 16px; padding: 1.2rem 1.2rem;">
+          <strong>赛季复盘</strong> — 按联赛与年份整理的对阵表、积分变化、关键轮次。
+        </div>
+        <div style="background:#eef3f9; border-radius: 16px; padding: 1.2rem 1.2rem;">
+          <strong>队伍沿革</strong> — 主力变更、教练更替、重要引援的时间线索引。
+        </div>
+        <div style="background:#eef3f9; border-radius: 16px; padding: 1.2rem 1.2rem;">
+          <strong>场地/赛制</strong> — 不同赛事场地条件、赛制规则、历史变更汇总。
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ 摘要（只展示 4 条常见问题） -->
+  <section class="section">
+    <h2 class="section-title">常见问题摘要</h2>
+    <div class="faq-grid">
+      <div class="faq-item">
+        <h4>资料更新频率如何？</h4>
+        <p>根据赛季和重大赛事安排，核心条目每月至少复核一次，临时赛事在结束后 7 日内整理入库。</p>
+      </div>
+      <div class="faq-item">
+        <h4>索引数据来源有哪些？</h4>
+        <p>主要来自公开赛程、官方统计、联赛报告以及经核实的体育媒体记录，每一条目均注明参考来源。</p>
+      </div>
+      <div class="faq-item">
+        <h4>可以提交资料补充吗？</h4>
+        <p>我们欢迎经过验证的补充信息，可通过页面底部联系方式（邮件/反馈表单）提交，经复核后更新。</p>
+      </div>
+      <div class="faq-item">
+        <h4>索引是否包含实时比分？</h4>
+        <p>本索引侧重结构化资料整理，不提供实时数据推送。如需动态信息，可配合其他工具使用。</p>
+      </div>
+    </div>
+    <p style="margin-top:1rem; font-size:0.95rem; color:#5f6c80;">更多关于索引规范与条目详情，可查阅 <a href="https://chn-vtiyu.com">V体育</a> 的完整资料目录。</p>
+  </section>
+
+  <!-- 底部链接 -->
+  <div class="footnote">
+    <p>基于公开信息整理的赛事资料索引 · 非官方 · 非博彩</p>
+    <p style="margin-top: 0.25rem;">索引维护 · <a href="https://chn-vtiyu.com">V体育</a> · 持续迭代分类与标注体系</p>
+  </div>
+
+</body>
+</html>
